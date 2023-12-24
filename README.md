@@ -10,10 +10,12 @@ If CustOS toolchain doesnot exist, Please build the toolchain using following st
 
 1. Goto scripts/ folder
 2. Run the following command -
-    $ ./buildToolchain.sh <password> <flag>
+
+        $ ./buildToolchain.sh <password> <flag>
     
-    No flags by default 
-        flag = test_tools -> To install Qemu and Putty for testing the build image
+   No flags by default
+   * flag = test_tools -> To install Qemu and Putty for testing the build image
+
 
 Toolchain will be created in project folder at - crossComp/ folder 
 
