@@ -1,2 +1,2 @@
-# PalOs
+# CustOS
 Conceptual Custom Os
