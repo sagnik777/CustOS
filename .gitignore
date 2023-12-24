@@ -1,2 +1,8 @@
 # Tag and Unrequired files
 tags
+
+# SWap files from all folders
+boot/.*.sw*
+driver/.*.sw*
+kernel/.*.sw*
+
