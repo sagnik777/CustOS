@@ -10,7 +10,7 @@
 #include "debug.h"
 #include "exception_handler.h"
 
-void main() {
+void main(void) {
 
 	// uint64_t value = 0x1234567890ABCDEF;
 	// char *p = (char*)0xFFFF00000000000;

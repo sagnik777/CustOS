@@ -28,7 +28,7 @@ release: all
 
 # Clean up all object files and builds directory
 clean:
-	rm -rf builds/*
+	rm -rf builds
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done
