@@ -1,12 +1,12 @@
-# CustOS
+# ConceptOS
 
 Conceptual Custom OS for RPi4
 AIM - Learning and building OS from scratch
 
 ****************************************************
 
-CustOS toolchain requried to build the final kernel8.img
-If CustOS toolchain doesnot exist, Please build the toolchain using following steps -
+ConceptOS toolchain requried to build the final kernel8.img
+If ConceptOS toolchain doesnot exist, Please build the toolchain using following steps -
 
 1. Goto scripts/ folder
 2. Run the following command -

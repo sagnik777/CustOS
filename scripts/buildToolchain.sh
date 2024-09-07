@@ -10,28 +10,28 @@ if [ -z "$1" ]; then
 	echo " *** Creation FAILED !!! "
 
 else
-	echo "*** CustOS : Update apt ... "
+	echo "*** ConceptOS : Update apt ... "
 	echo $1 | sudo -S apt update
 
-	echo "*** CustOS : Install libs for building cross compiler ... "
+	echo "*** ConceptOS : Install libs for building cross compiler ... "
 	echo $1 | sudo -S apt install -y build-essential texinfo bison flex libgmp-dev libmpc-dev libmpfr-dev 
 	
 	if [ "$2" == "test_tools" ]; then
-		echo "*** CustOS : Install test tools ..."
+		echo "*** ConceptOS : Install test tools ..."
 		echo $1 | sudo -S apt install qemu-system putty
 	fi
 
-	echo "*** CustOS : Building CrossCompiler ... "
+	echo "*** ConceptOS : Building CrossCompiler ... "
 	mkdir $TOOL_BUILD
 	cd $TOOL_BUILD
 
-	echo "*** CustOS : Create ENV Variables"
-	export CUSTOS_PREFIX="$TOOL_PATH"
-	export CUSTOS_TARGET=aarch64-none-elf
-	export PATH="$CUSTOS_PREFIX/bin:$PATH"
-	echo "*** CustOS : ENV set : PREFIX : $CUSTOS_PREFIX TARGET : $TARGET PATH : $PATH !!!"
+	echo "*** ConceptOS : Create ENV Variables"
+	export ConceptOS_PREFIX="$TOOL_PATH"
+	export ConceptOS_TARGET=aarch64-none-elf
+	export PATH="$ConceptOS_PREFIX/bin:$PATH"
+	echo "*** ConceptOS : ENV set : PREFIX : $ConceptOS_PREFIX TARGET : $TARGET PATH : $PATH !!!"
 
-	echo "*** CustOS : Make BinUtils ... "
+	echo "*** ConceptOS : Make BinUtils ... "
 	mkdir binutils
 	cd binutils
 	# Retrieve and Download latest release of binUtils
@@ -41,11 +41,11 @@ else
 	tar xf binutils-*.tar.gz
 	mkdir build-binutils
 	cd build-binutils
-	../binutils-*/configure --target=$CUSTOS_TARGET --enable-interwork --enable-multilib --with-sysroot --disable-nls --disable-werror --prefix=$CUSTOS_PREFIX 2>&1 | tee configure.log
+	../binutils-*/configure --target=$ConceptOS_TARGET --enable-interwork --enable-multilib --with-sysroot --disable-nls --disable-werror --prefix=$ConceptOS_PREFIX 2>&1 | tee configure.log
 	make all install 2>&1 | tee make.log
 	cd $TOOL_BUILD
 
-	echo "*** CustOS : Make : GCC ... "
+	echo "*** ConceptOS : Make : GCC ... "
 	mkdir gcc
 	cd gcc
 	# Retrieve latest GCC and Download
@@ -55,14 +55,14 @@ else
 	tar xf gcc-*.tar.gz
 	mkdir build-gcc
 	cd build-gcc
-	../gcc-*/configure --target=$CUSTOS_TARGET --prefix="$CUSTOS_PREFIX" --disable-nls --disable-libssp --enable-languages=c --without-headers
+	../gcc-*/configure --target=$ConceptOS_TARGET --prefix="$ConceptOS_PREFIX" --disable-nls --disable-libssp --enable-languages=c --without-headers
 	make all-gcc
 	make all-target-libgcc
 	make install-gcc
 	make install-target-libgcc
 	cd $TOOL_BUILD
 
-	echo "*** CustOS : Make GDB ... "
+	echo "*** ConceptOS : Make GDB ... "
 	mkdir gdb
 	cd gdb
 	# Retrieve latest GDB and download
@@ -72,12 +72,12 @@ else
 	tar xf gdb-*.tar.gz
 	mkdir build-gdb
 	cd build-gdb
-	../gdb-*/configure --target="$CUSTOS_TARGET" --prefix="$CUSTOS_PREFIX" --program-prefix=$CUSTOS_TARGET-
+	../gdb-*/configure --target="$ConceptOS_TARGET" --prefix="$ConceptOS_PREFIX" --program-prefix=$ConceptOS_TARGET-
 	make
 	make install
 
-	echo "*** CustOS : Removing build directory ..."
+	echo "*** ConceptOS : Removing build directory ..."
 	rm -rfv $TOOL_BUILD
 	
-	echo "*** CustOS : Toolchain Creation Success !!!"
+	echo "*** ConceptOS : Toolchain Creation Success !!!"
 fi
