@@ -7,7 +7,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdint.h"
+#include "stdint.h"
 
 #define ASSERT(e) do {                     \
     if(!(e))                               \

@@ -7,9 +7,9 @@
 #ifndef PRINT_H_
 #define PRINT_H_
 
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdint.h"
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdint.h"
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdarg.h"
+#include "stdint.h"
+#include "stdint.h"
+#include "stdarg.h"
 
 #define MAX_CAPTURES 1024
 

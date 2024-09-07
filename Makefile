@@ -1,33 +1,37 @@
-# Wildcards for all files
-CFILES = $(wildcard kernel/src/*.c driver/src/*.c)
-SFILES = $(wildcard driver/src/*.S)
-HEADERS = $(wildcard kernel/libs/*.h driver/libs/*.h)
+# Custom Compiler
+BASE_DIR = $(shell pwd)
+export BASE_DIR
+XCOMP = $(BASE_DIR)/crossComp/bin
 
-OBJ = ${CFILES:.c=.o} 
-S_OBJ = ${SFILES:.S=.o}
+# Subdirectories
+SD_BOOT := $(BASE_DIR)/boot
+SD_KERNEL = $(BASE_DIR)/kernel
+SD_DRIVER = $(BASE_DIR)/driver
 
-# GCC and C flags
-CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -mgeneral-regs-only
-CROSSCOMP = $(pwd)/crossComp
-CC = ${CROSSCOMP}/aarch64-none-elf-gcc
+# Default target: builds everything
+all: kernel8.img
 
-#Output directories
+# Link all object files to create the final kernel8.img
+kernel8.img:
+	@mkdir -p builds
+	@echo "========== Compiling Subdirectories"
+	$(MAKE) -C $(SD_BOOT) all
+	$(MAKE) -C $(SD_KERNEL) all
+	$(MAKE) -C $(SD_DRIVER) all
+	@echo "========== Linking object files"
+	$(XCOMP)/aarch64-none-elf-ld -nostdlib -T linkScript.ld -o builds/kernel8.elf builds/*.o
+	$(XCOMP)/aarch64-none-elf-objcopy -O binary builds/kernel8.elf builds/kernel8.img
 
-boot.o: boot/boot.S
-	${CC} ${CFLAGS} -c boot/boot.S -o builds/boot.o
+# Release target (e.g., to copy kernel8.img to SD card or similar)
+release: all
+	@echo "Releasing kernel8.img..."
 
-%.o: %.c ${HEADERS}
-	${CC} ${CFLAGS} -c $< -o $@
-
-%.o: %.S
-	${CC} ${CFLAGS} -c $< -o $@
-
-kernel8.img: boot.o ${S_OBJ} ${OBJ}
-	${CROSSCOMP}/aarch64-none-elf-ld -nostdlib -T linkScript.ld -o builds/kernel8.elf builds/boot.o ${S_OBJ} ${OBJ}
-	${CROSSCOMP}/aarch64-none-elf-objcopy -O binary builds/kernel8.elf builds/kernel8.img
-
-release: kernel8.img
-
+# Clean up all object files and builds directory
 clean:
-	rm -rfv builds/*
-	rm -rfv kernel/src/*.o boot/*.o driver/src/*.o
+	rm -rf builds/*
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir clean; \
+	done
+	rm -f boot/*.o kernel/src/*.o driver/src/*.o
+
+.PHONY: all release clean $(SUBDIRS)

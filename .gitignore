@@ -6,3 +6,7 @@ boot/.*.sw*
 driver/.*.sw*
 kernel/.*.sw*
 .*.sw*
+
+# Other Files
+.vscode
+builds/

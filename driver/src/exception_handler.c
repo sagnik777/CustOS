@@ -4,11 +4,11 @@
 *  Created : 4/6/2022
 */
 
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdint.h"
-#include "../../kernel/libs/print.h"
-#include "../libs/mmio_lib.h"
-#include "../libs/exception_handler.h"
-#include "../libs/uart.h"
+#include "stdint.h"
+#include "print.h"
+#include "mmio_lib.h"
+#include "exception_handler.h"
+#include "uart.h"
 
 static uint64_t ticks = 0;
 

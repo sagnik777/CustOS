@@ -4,8 +4,8 @@
 *  Created : 22/5/2022
 */
 
-#include "../libs/debug.h"
-#include "../libs/print.h"
+#include "debug.h"
+#include "print.h"
 
 void error_check(char *file, uint64_t line)
 {

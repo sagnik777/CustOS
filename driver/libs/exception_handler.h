@@ -7,7 +7,7 @@
 #ifndef EXCEPTION_HANDLER_H_
 #define EXCEPTION_HANDLER_H_
 
-#include "../libs/irq.h"
+#include "irq.h"
 
 void init_timer();
 void init_intr_controller();

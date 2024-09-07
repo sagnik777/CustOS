@@ -4,8 +4,8 @@
 *  Created : 22/4/2022
 */
 
-#include "../libs/uart.h"
-#include "../libs/mmio_lib.h"
+#include "uart.h"
+#include "mmio_lib.h"
 
 /* --- Defines --- */
 #define F_UART_CLK 48000000

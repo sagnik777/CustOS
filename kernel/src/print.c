@@ -5,8 +5,8 @@
 *  Created : 27/4/2022
 */
 
-#include "../libs/print.h"
-#include "../../driver/libs/uart.h"
+#include "print.h"
+#include "uart.h"
 
 /* Static declarations */
 static int read_string(char* buffer, int position, const char *string);

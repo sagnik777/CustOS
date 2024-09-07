@@ -4,11 +4,11 @@
 *  Created : 22/4/2022
 */
 
-#include "../../driver/libs/uart.h"
-#include "../../driver/libs/mmio_lib.h"
-#include "../libs/print.h"
-#include "../libs/debug.h"
-#include "../../driver/libs/exception_handler.h"
+#include "uart.h"
+#include "mmio_lib.h"
+#include "print.h"
+#include "debug.h"
+#include "exception_handler.h"
 
 void main() {
 

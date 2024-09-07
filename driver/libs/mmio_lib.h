@@ -1,7 +1,7 @@
 #ifndef MMIO_LIBS_H_
 #define MMIO_LIBS_H_
 
-#include "../../toolchain/lib/gcc/aarch64-none-elf/11.2.0/include/stdint.h"
+#include "stdint.h"
 
 // MMIO Functionalities 
 void delay(uint64_t value);
