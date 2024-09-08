@@ -5,7 +5,7 @@ CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -mgeneral-re
 
 # Specify SRC and OBJ folders
 SRC_DIR = $(shell pwd)
-OBJ_DIR = $(BASE_DIR)/builds
+OBJ_DIR = $(BASE_DIR)/builds/obj
 
 # List of source files
 ASMSRC = $(wildcard $(SRC_DIR)/*.S)
@@ -20,6 +20,6 @@ all: $(OBJ)
 
 # Clean target
 clean:
-	rm -f ../builds/*.o
+	rm -f $(BASE_DIR)/builds/obj/*.o
 
 .PHONY: all clean

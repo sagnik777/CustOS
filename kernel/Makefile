@@ -5,8 +5,8 @@ CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -mgeneral-re
 TOOLCHAIN_LIBS = $(XCOMP)/lib/gcc/aarch64-none-elf/13.2.0/include
 
 # Specify SRC and OBJ folders
-SRC_DIR = $(shell pwd)
-OBJ_DIR = $(BASE_DIR)/builds
+SRC_DIR = $(shell pwd)/src
+OBJ_DIR = $(BASE_DIR)/builds/obj
 
 # List of source files
 CSRC = $(wildcard $(SRC_DIR)/*.c)
@@ -27,6 +27,6 @@ all: $(COBJ)
 
 # Clean target
 clean:
-	rm -f ../builds/*.o
+	rm -f $(BASE_DIR)/builds/obj/*.o
 
 .PHONY: all clean
